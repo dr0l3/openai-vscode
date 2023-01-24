@@ -1,0 +1,176 @@
+{
+  "name": "gpt3-vscode-extension",
+  "displayName": "GPT 3 VS Code Extension",
+  "description": "Edit code with Codex",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning",
+    "Education",
+    "Testing",
+    "Debuggers"
+  ],
+  "keywords": [
+    "AI",
+    "OpenAI",
+    "GPT-3",
+    "GPT3",
+    "GPT"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:GPT.createDocs",
+    "onCommand:GPT.createCodeFromDocs",
+    "onCommand:GPT.suggestImprovement",
+    "onCommand:GPT.askGPT",
+    "onCommand:GPT.editWithCodex"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "GPT.createDocs",
+        "title": "Create Documentation",
+        "icon": "$(hubot)"
+      },
+      {
+        "command": "GPT.createCodeFromDocs",
+        "title": "Create code from docs",
+        "icon": "$(check)"
+      },
+      {
+        "command": "GPT.suggestImprovement",
+        "title": "GPT Code Review",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "GPT.askGPT",
+        "title": "Ask GPT",
+        "icon": "$(star)"
+      },
+      {
+        "command": "GPT.updateAPIKey",
+        "title": "Update OpenAI API Key",
+        "icon": "$(pencil)"
+      },
+      {
+        "command": "GPT.removeAPIKey",
+        "title": "Remove OpenAI API Key from secret storage",
+        "icon": "$(error)"
+      },
+      {
+        "command": "GPT.editWithCodex",
+        "title": "Edit code with Codex"
+      }
+    ],
+    "configuration": {
+      "title": "GPT-3",
+      "properties": {
+        "GPT.org": {
+          "type": "string",
+          "default": null,
+          "markdownDescription": "The [organization](https://beta.openai.com/account/org-settings) value from OpenAI"
+        },
+        "GPT.model": {
+          "type": "string",
+          "default": "text-davinci-003",
+          "markdownDescription": "The OpenAI [model](https://beta.openai.com/docs/models) to use for text completions"
+        },
+        "GPT.maxTokens": {
+          "type": "number",
+          "default": 250,
+          "minimum": 1,
+          "markdownDescription": "The maximum number of [tokens](https://beta.openai.com/docs/introduction/overview) for each text request to GPT"
+        },
+        "GPT.temperature": {
+          "type": "number",
+          "default": 0.3,
+          "minimum": 0,
+          "maximum": 1,
+          "markdownDescription": "The [temperature](https://beta.openai.com/docs/api-reference/completions/create#completions/create-temperature) of each text request to GPT. Must be between 0 and 1"
+        },
+        "GPT.codeModel": {
+          "type": "string",
+          "default": "code-davinci-002",
+          "markdownDescription": "The OpenAI [model](https://beta.openai.com/docs/models) to use for code completions"
+        },
+        "GPT.codeMaxTokens": {
+          "type": "number",
+          "default": 250,
+          "minimum": 1,
+          "markdownDescription": "The maximum number of [tokens](https://beta.openai.com/docs/introduction/overview) for each code request to GPT"
+        },
+        "GPT.codeTemperature": {
+          "type": "number",
+          "default": 0.1,
+          "minimum": 0,
+          "maximum": 1,
+          "markdownDescription": "The [temperature](https://beta.openai.com/docs/api-reference/completions/create#completions/create-temperature) of each code request to GPT. Must be between 0 and 1"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "GPT.createDocs",
+        "key": "alt+d",
+        "mac": "ctrl + ]",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "GPT.suggestImprovement",
+        "key": "alt+i",
+        "mac": "ctrl + [",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "GPT.askGPT",
+        "key": "alt+g",
+        "mac": "ctrl + '",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "GPT.createCodeFromDocs",
+        "key": "alt+x",
+        "mac": "ctrl + \\",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "GPT.editWithCodex",
+        "key": "ctrl + alt + e",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.2.0",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.3"
+  },
+  "author": "Rune",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "openai": "^3.1.0"
+  },
+  "pricing": "Free",
+  "publisher": "dr0l3",
+  "icon": "images/icon.png"
+}
